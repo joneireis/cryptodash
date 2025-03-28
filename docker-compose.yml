@@ -1,0 +1,22 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "15000:5000"
+    environment:
+      - FLASK_APP=${FLASK_APP:-app}
+      - FLASK_ENV=${FLASK_ENV:-production}
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - hassio  # Conecta à rede hassio existente no HassOS
+
+networks:
+  hassio:
+    external: true  # Indica que a rede hassio já existe

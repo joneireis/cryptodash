@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Dash</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="blockclock">
+        <div class="fear-greed-index loading" id="fear-greed-index"
+            title="Índice de Medo e Ganância: Mede o sentimento do mercado de criptomoedas (0-100).">Loading...</div>
+        <div class="transaction-fee loading" id="transaction-fee"
+            title="Taxa de Transação: Média atual das taxas de transação na rede Bitcoin, em sat/vB.">Loading...</div>
+        <div class="currency-label">BTC / USD</div>
+        <div class="price-display" id="price-display">{{ price }}</div>
+        <div class="title">Crypto Dash</div>
+        <div class="btc-dominance loading" id="btc-dominance"
+            title="Dominância do Bitcoin: Percentual do valor de mercado do Bitcoin em relação ao mercado total de criptomoedas.">
+            Loading...</div>
+        <div class="price-variation loading" id="price-variation"
+            title="Variação de Preço: Percentual de mudança no preço do Bitcoin nas últimas 24 horas.">Loading...</div>
+        <canvas id="price-chart" style="position: absolute; top: 0; left: 0; opacity: 0.2; z-index: 0;"></canvas>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>

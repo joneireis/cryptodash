@@ -1,0 +1,239 @@
+/* Variáveis Globais */
+:root {
+    --primary-color: #fff;
+    --font-size-large: 5em;
+    --fear-greed-color-extreme-fear: #ff0000;
+    --fear-greed-color-fear: #ff8000;
+    --fear-greed-color-greed: #00cc00;
+    --fear-greed-color-extreme-greed: #008000;
+    --title-color: #ffcc00;
+    --tooltip-bg: rgba(0, 0, 0, 0.9);
+    --tooltip-text: #fff;
+}
+
+/* Body */
+body {
+    background-color: #000;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* Blockclock Layout */
+.blockclock {
+    background-color: #000;
+    border: 5px solid var(--primary-color);
+    border-radius: 15px;
+    padding: 20px;
+    width: 90vw;
+    max-width: 600px;
+    height: 50vh;
+    min-height: 300px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Estilo geral para elementos com tooltip */
+.fear-greed-index,
+.transaction-fee,
+.btc-dominance,
+.price-variation {
+    position: relative;
+    cursor: help;
+    /* Cursor de ajuda ao passar o mouse */
+}
+
+/* Tooltip personalizado */
+.fear-greed-index:hover::after,
+.transaction-fee:hover::after,
+.btc-dominance:hover::after,
+.price-variation:hover::after {
+    content: attr(title);
+    position: absolute;
+    background-color: var(--tooltip-bg);
+    color: var(--tooltip-text);
+    font-size: 0.8em;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.fear-greed-index:hover::after {
+    bottom: 100%;
+    left: 0;
+    margin-bottom: 5px;
+}
+
+.transaction-fee:hover::after {
+    bottom: 100%;
+    right: 0;
+    margin-bottom: 5px;
+}
+
+.btc-dominance:hover::after {
+    top: 100%;
+    left: 0;
+    margin-top: 5px;
+}
+
+.price-variation:hover::after {
+    top: 100%;
+    right: 0;
+    margin-top: 5px;
+}
+
+/* Mostrar tooltip ao passar o mouse */
+.fear-greed-index:hover::after,
+.transaction-fee:hover::after,
+.btc-dominance:hover::after,
+.price-variation:hover::after {
+    opacity: 1;
+}
+
+/* Fear and Greed Index */
+.fear-greed-index {
+    font-size: 1.2em;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    z-index: 20;
+    opacity: 1;
+}
+
+.fear-greed-index.loading {
+    animation: spin 1s linear infinite;
+}
+
+/* BTC Dominance */
+.btc-dominance {
+    color: var(--primary-color);
+    font-size: 1em;
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    z-index: 10;
+}
+
+.btc-dominance.loading {
+    animation: spin 1s linear infinite;
+}
+
+/* Transaction Fee */
+.transaction-fee {
+    color: var(--primary-color);
+    font-size: 1em;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    z-index: 10;
+}
+
+.transaction-fee.loading {
+    animation: spin 1s linear infinite;
+}
+
+/* Currency Label */
+.currency-label {
+    color: var(--primary-color);
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+/* Price Display */
+.price-display {
+    color: var(--primary-color);
+    font-size: var(--font-size-large);
+    font-weight: 700;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+/* Title */
+.title {
+    color: var(--title-color);
+    font-size: 2em;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+/* Price Variation */
+.price-variation {
+    color: var(--primary-color);
+    font-size: 1.2em;
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    z-index: 10;
+}
+
+.price-variation.loading {
+    animation: spin 1s linear infinite;
+}
+
+/* Chart */
+#price-chart {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+/* Animações */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Media Queries */
+@media (max-width: 600px) {
+    .price-display {
+        font-size: 3em;
+    }
+
+    .fear-greed-index {
+        font-size: 1em;
+    }
+
+    .transaction-fee {
+        font-size: 0.8em;
+    }
+
+    .price-variation {
+        font-size: 1em;
+    }
+
+    .btc-dominance {
+        font-size: 0.9em;
+    }
+}
